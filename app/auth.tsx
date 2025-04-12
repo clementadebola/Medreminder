@@ -81,7 +81,8 @@ export default function AuthScreen() {
 
         <TouchableOpacity 
         style={[styles.button, isAuthenticating && styles.buttonDisabled]}
-        onPress={authenticate}
+        // onPress={authenticate}
+        onPress={()=> router.push('/home')}
         disabled={isAuthenticating}
          >
           <Ionicons
