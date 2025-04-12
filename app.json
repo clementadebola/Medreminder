@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "KorensiApp",
-    "slug": "KorensiApp",
+    "name": "MedReminder",
+    "slug": "MedReminder",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

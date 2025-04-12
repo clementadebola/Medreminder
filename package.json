@@ -1,5 +1,5 @@
 {
-  "name": "korensiapp",
+  "name": "MedReminder",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
@@ -23,7 +23,10 @@
     "expo-constants": "~17.0.7",
     "expo-font": "~13.0.4",
     "expo-haptics": "~14.0.1",
+    "expo-linear-gradient": "^14.0.2",
     "expo-linking": "~7.0.5",
+    "expo-local-authentication": "~15.0.2",
+    "expo-notifications": "^0.29.14",
     "expo-router": "~4.0.17",
     "expo-splash-screen": "~0.29.22",
     "expo-status-bar": "~2.0.1",
