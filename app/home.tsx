@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Animated, ScrollView } from "react-native";
 export default function HomeScreen() {
   return (
     <ScrollView>
-      <LinearGradient colors={["#4CAF50", "#2E7D32"]} style={styles.container}>
+      <LinearGradient colors={["#1a8e2d", "#146922"]} style={styles.container}>
         <View>
           <View>
             <Text>Hey how u dey na</Text>
