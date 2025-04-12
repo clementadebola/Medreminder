@@ -8,7 +8,8 @@ export default function HomeScreen() {
       <LinearGradient colors={["#4CAF50", "#2E7D32"]} style={styles.container}>
         <View>
           <View>
-            <Text>Hey</Text>
+            <Text>Hey how u dey na</Text>
+            <Text>he don be like this</Text>
           </View>
         </View>
       </LinearGradient>
