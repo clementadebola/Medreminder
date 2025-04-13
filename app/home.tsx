@@ -15,6 +15,16 @@ import Svg, { Circle } from "react-native-svg";
 const { width } = Dimensions.get("window");
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
+const QUICK_ACTIONS = [
+    {
+        icon: 'add-circle-outline' as const,
+        label: 'Add\nMedication',
+        route: '/medications/add' as const,
+        color: '#2e7d32',
+        gradient: ["#4CAF50", "#2E7D32"] as [string, string],
+    },
+]
+
 interface CircularProgressProps {
   progress: number;
   totalDoses: number;
@@ -54,7 +64,6 @@ function CircularProgress({
         </Text>
       </View>
       <Svg width={size} height={size} style={styles.progressRing}>
-
         <Circle
           cx={size / 2}
           cy={size / 2}
@@ -92,16 +101,24 @@ export default function HomeScreen() {
             <TouchableOpacity style={styles.notificationButton}>
               <Ionicons name="notifications-outline" size={24} color="white" />
 
-              {<View style={styles.notificationBadge}>
-                <Text style={styles.notificationCount}>1</Text>
-                </View>}
+              {
+                <View style={styles.notificationBadge}>
+                  <Text style={styles.notificationCount}>1</Text>
+                </View>
+              }
             </TouchableOpacity>
           </View>
 
           <CircularProgress progress={50} totalDoses={10} completedDoses={5} />
-          
         </View>
       </LinearGradient>
+
+      <View style={styles.content}>
+        <View>
+          <Text>Quick Actions</Text>
+          <View></View>
+        </View>
+      </View>
     </ScrollView>
   );
 }
