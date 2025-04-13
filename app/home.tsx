@@ -62,6 +62,7 @@ function CircularProgress({
           strokeWidth={strokeWidth}
           fill="none"
         />
+        
         <AnimatedCircle
           cx={size / 2}
           cy={size / 2}
@@ -96,7 +97,7 @@ export default function HomeScreen() {
                 </View>}
             </TouchableOpacity>
           </View>
-          
+
           <CircularProgress progress={50} totalDoses={10} completedDoses={5} />
         </View>
       </LinearGradient>
