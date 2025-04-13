@@ -5,6 +5,7 @@ import { View, Text, StyleSheet, Animated, ScrollView, TouchableOpacity, Dimensi
 import Svg, { Circle } from "react-native-svg";
 
 const { width } = Dimensions.get("window");
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 interface CircularProgressProps {
     progress: number;
