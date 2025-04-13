@@ -54,6 +54,7 @@ function CircularProgress({
         </Text>
       </View>
       <Svg width={size} height={size} style={styles.progressRing}>
+
         <Circle
           cx={size / 2}
           cy={size / 2}
@@ -62,7 +63,6 @@ function CircularProgress({
           strokeWidth={strokeWidth}
           fill="none"
         />
-        
         <AnimatedCircle
           cx={size / 2}
           cy={size / 2}
@@ -99,6 +99,7 @@ export default function HomeScreen() {
           </View>
 
           <CircularProgress progress={50} totalDoses={10} completedDoses={5} />
+          
         </View>
       </LinearGradient>
     </ScrollView>
