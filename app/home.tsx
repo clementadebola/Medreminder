@@ -147,7 +147,7 @@ export default function HomeScreen() {
                          >
                             <View>
                                 <View>
-                                    <Ionicons />
+                                    <Ionicons name={action.icon} />
                                 </View>
                                 <Text></Text>
                             </View>
