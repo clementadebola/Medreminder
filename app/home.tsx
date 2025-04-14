@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { Link } from "expo-router";
 import { useState, useEffect, useRef, useCallback } from "react";
 import {
   View,
@@ -23,7 +24,28 @@ const QUICK_ACTIONS = [
         color: '#2e7d32',
         gradient: ["#4CAF50", "#2E7D32"] as [string, string],
     },
-]
+    {
+        icon: "calendar-outline" as const,
+        label: "Calendar\nView",
+        route: "/calendar" as const,
+        color: "#1976D2",
+        gradient: ["#2196F3", "#1976D2"] as [string, string],
+      },
+      {
+        icon: "time-outline" as const,
+        label: "History\nLog",
+        route: "/history" as const,
+        color: "#C2185B",
+        gradient: ["#E91E63", "#C2185B"] as [string, string],
+      },
+      {
+        icon: "medical-outline" as const,
+        label: "Refill\nTracker",
+        route: "/refills" as const,
+        color: "#E64A19",
+        gradient: ["#FF5722", "#E64A19"] as [string, string],
+      },
+];
 
 interface CircularProgressProps {
   progress: number;
@@ -116,7 +138,24 @@ export default function HomeScreen() {
       <View style={styles.content}>
         <View>
           <Text>Quick Actions</Text>
-          <View></View>
+          <View>
+            {QUICK_ACTIONS.map((action)=> (
+                <Link href={action.route} key={action.label} asChild>
+                    <TouchableOpacity>
+                        <LinearGradient colors={action.gradient}
+                        //  style={styles.quickActionButton}
+                         >
+                            <View>
+                                <View>
+                                    <Ionicons />
+                                </View>
+                                <Text></Text>
+                            </View>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                </Link>
+            ))}
+          </View>
         </View>
       </View>
     </ScrollView>
