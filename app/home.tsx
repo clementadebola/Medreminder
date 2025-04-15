@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useState, useEffect, useRef, useCallback } from "react";
 import {
   View,
@@ -17,34 +17,34 @@ const { width } = Dimensions.get("window");
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 const QUICK_ACTIONS = [
-    {
-        icon: 'add-circle-outline' as const,
-        label: 'Add\nMedication',
-        route: '/medications/add' as const,
-        color: '#2e7d32',
-        gradient: ["#4CAF50", "#2E7D32"] as [string, string],
-    },
-    {
-        icon: "calendar-outline" as const,
-        label: "Calendar\nView",
-        route: "/calendar" as const,
-        color: "#1976D2",
-        gradient: ["#2196F3", "#1976D2"] as [string, string],
-      },
-      {
-        icon: "time-outline" as const,
-        label: "History\nLog",
-        route: "/history" as const,
-        color: "#C2185B",
-        gradient: ["#E91E63", "#C2185B"] as [string, string],
-      },
-      {
-        icon: "medical-outline" as const,
-        label: "Refill\nTracker",
-        route: "/refills" as const,
-        color: "#E64A19",
-        gradient: ["#FF5722", "#E64A19"] as [string, string],
-      },
+  {
+    icon: "add-circle-outline" as const,
+    label: "Add\nMedication",
+    route: "/medications/add" as const,
+    color: "#2e7d32",
+    gradient: ["#4CAF50", "#2E7D32"] as [string, string],
+  },
+  {
+    icon: "calendar-outline" as const,
+    label: "Calendar\nView",
+    route: "/calendar" as const,
+    color: "#1976D2",
+    gradient: ["#2196F3", "#1976D2"] as [string, string],
+  },
+  {
+    icon: "time-outline" as const,
+    label: "History\nLog",
+    route: "/history" as const,
+    color: "#C2185B",
+    gradient: ["#E91E63", "#C2185B"] as [string, string],
+  },
+  {
+    icon: "medical-outline" as const,
+    label: "Refill\nTracker",
+    route: "/refills" as const,
+    color: "#E64A19",
+    gradient: ["#FF5722", "#E64A19"] as [string, string],
+  },
 ];
 
 interface CircularProgressProps {
@@ -67,7 +67,7 @@ function CircularProgress({
   useEffect(() => {
     Animated.timing(animationValue, {
       toValue: progress,
-      duration: 1000,
+      duration: 1500,
       useNativeDriver: true,
     }).start();
   }, [progress]);
@@ -80,7 +80,9 @@ function CircularProgress({
   return (
     <View style={styles.progressContainer}>
       <View style={styles.progressTextContainer}>
-        <Text style={styles.progressPercentage}>{Math.round(progress)}</Text>
+        <Text style={styles.progressPercentage}>
+          {Math.round(progress * 1)}%
+        </Text>
         <Text style={styles.progressLabel}>
           {completedDoses} of {totalDoses} doses
         </Text>
@@ -136,28 +138,43 @@ export default function HomeScreen() {
       </LinearGradient>
 
       <View style={styles.content}>
-        <View>
-          <Text>Quick Actions</Text>
-          <View>
-            {QUICK_ACTIONS.map((action)=> (
-                <Link href={action.route} key={action.label} asChild>
-                    <TouchableOpacity>
-                        <LinearGradient colors={action.gradient}
-                        //  style={styles.quickActionButton}
-                         >
-                            <View>
-                                <View>
-                                    <Ionicons name={action.icon} />
-                                </View>
-                                <Text></Text>
-                            </View>
-                        </LinearGradient>
-                    </TouchableOpacity>
-                </Link>
+        <View style={styles.quickActionsContainer}>
+          <Text style={styles.sectionTitle}>Quick Actions</Text>
+          <View style={styles.quickActionsGrid}>
+            {QUICK_ACTIONS.map((action) => (
+              <Link href={action.route} key={action.label} asChild>
+                <TouchableOpacity style={styles.actionButton}>
+                  <LinearGradient
+                    colors={action.gradient}
+                    style={styles.actionGradient}
+                  >
+                    <View style={styles.actionContent}>
+                      <View style={styles.actionIcon}>
+                        <Ionicons name={action.icon} size={24} color="white" />
+                      </View>
+                      <Text style={styles.actionLabel}>{action.label}</Text>
+                    </View>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </Link>
             ))}
           </View>
         </View>
       </View>
+
+      <View>
+        <View>
+            <Text>Today's Schedule</Text>
+            <Link rel="stylesheet" href="/calender" >
+            <TouchableOpacity>
+                <Text>See All</Text>
+            </TouchableOpacity>
+            </Link>
+        </View>
+
+        {}
+      </View>
+
     </ScrollView>
   );
 }
@@ -250,5 +267,50 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: "white",
     fontWeight: "bold",
+  },
+
+  quickActionsContainer: {
+    paddingHorizontal: 20,
+    marginBottom: 25,
+  },
+  quickActionsGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 12,
+    marginTop: 15,
+  },
+  actionButton: {
+    width: (width - 52) / 2,
+    height: 110,
+    borderRadius: 16,
+    overflow: "hidden",
+  },
+  actionGradient: {
+    flex: 1,
+    padding: 15,
+  },
+  actionIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  actionLabel: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "white",
+    marginTop: 8,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#1a1a1a",
+    marginBottom: 5,
+  },
+  actionContent: {
+    flex: 1,
+    justifyContent: "space-between",
   },
 });
