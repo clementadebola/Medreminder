@@ -212,6 +212,7 @@ export default function HomeScreen() {
                   <View>
                     <Ionicons name="close-circle-outline" size={24}/>
                     <Text>Missed</Text>
+                    
                   </View>
                 )}
               </View>
