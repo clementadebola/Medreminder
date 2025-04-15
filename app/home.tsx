@@ -167,6 +167,7 @@ export default function HomeScreen() {
             <Text>Today's Schedule</Text>
             <Link rel="stylesheet" href="/calender" >
             <TouchableOpacity>
+                
                 <Text>See All</Text>
             </TouchableOpacity>
             </Link>
