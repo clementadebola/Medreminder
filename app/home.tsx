@@ -206,13 +206,13 @@ export default function HomeScreen() {
                 {true ? (
                   <View>
                     <Ionicons name="checkmark-circle-outline" size={24}/>
+                    
                     <Text>Taken</Text>
                   </View>
                 ): (
                   <View>
                     <Ionicons name="close-circle-outline" size={24}/>
                     <Text>Missed</Text>
-                    
                   </View>
                 )}
               </View>
