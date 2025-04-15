@@ -167,13 +167,57 @@ export default function HomeScreen() {
             <Text>Today's Schedule</Text>
             <Link rel="stylesheet" href="/calender" >
             <TouchableOpacity>
-                
+
                 <Text>See All</Text>
             </TouchableOpacity>
             </Link>
         </View>
 
-        {}
+        {true? (
+            <View>
+                <Ionicons name="medical-outline" size={48} color="#ccc" />
+                <Text>No Medications Scheduled for today</Text>
+                <Link href="/medications/add">
+                <TouchableOpacity>
+                  <Text>Add Medication</Text>
+                </TouchableOpacity>
+                </Link>
+                </View>
+              
+        ): (
+          [].map((medications)=> {
+            // const taken = medications.taken
+            return (
+              <View>
+                <View>
+                  <Ionicons name="medical-outline" size={24} />
+                </View>
+                <View>
+                 <View>
+                  <Text>name</Text>
+                  <Text>dosage</Text>
+                 </View>
+                 <View>
+                  <Ionicons name="time-outline" size={16} color="#ccc"/>
+                  <Text>time</Text>
+                 </View>
+                </View>
+
+                {true ? (
+                  <View>
+                    <Ionicons name="checkmark-circle-outline" size={24}/>
+                    <Text>Taken</Text>
+                  </View>
+                ): (
+                  <View>
+                    <Ionicons name="close-circle-outline" size={24}/>
+                    <Text>Missed</Text>
+                  </View>
+                )}
+              </View>
+            )
+          })
+        )};
       </View>
 
     </ScrollView>
