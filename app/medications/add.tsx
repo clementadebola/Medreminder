@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const { width } = Dimensions.get("window");
 
@@ -52,8 +53,21 @@ const DURATIONS = [
   { id: "5", label: "Ongoing", value: -1 },
 ];
 
-
 export default function AddMedicationScreen() {
+  const [form, setForm] = useState({
+    name: "",
+    dosage: "",
+    frequency: "",
+    duration: "",
+    startDate: new Date(),
+    times: ["09:00"],
+    notes: "",
+    reminderEnabled: true,
+    refillReminder: false,
+    currentSupply: "",
+    refillAt: "",
+  });
+
   const renderFrequencyOptions = () => {
     return (
       <View>
@@ -69,9 +83,9 @@ export default function AddMedicationScreen() {
     );
   };
 
-  const renderDurationOptions = () =>{
-    return(
-        <View>
+  const renderDurationOptions = () => {
+    return (
+      <View>
         {DURATIONS.map((dur) => (
           <TouchableOpacity key={dur.id}>
             <View>
@@ -81,7 +95,7 @@ export default function AddMedicationScreen() {
           </TouchableOpacity>
         ))}
       </View>
-    )
+    );
   };
 
   return (
@@ -117,6 +131,8 @@ export default function AddMedicationScreen() {
               // value={}
             />
           </View>
+
+          {/* Schedule */}
           <View>
             <Text>How often?</Text>
             {renderFrequencyOptions()}
@@ -125,12 +141,21 @@ export default function AddMedicationScreen() {
             {renderDurationOptions()}
 
             <TouchableOpacity>
-                <View >
-                    <Ionicons name="calendar" size={20} color={"#1a8e2d"}/>
-                    <Text>Starts {}</Text>
-                </View>
+              <View>
+                <Ionicons name="calendar" size={20} color={"#1a8e2d"} />
+                <Text>Starts {}</Text>
+              </View>
             </TouchableOpacity>
-            
+
+            <DateTimePicker value={form.startDate} mode="date" />
+
+            {/* <DateTimePicker mode="time" value={(()=> {
+                const [hours, minutes] = form.times[0].split(":").map(Number);
+                const date = new Date();
+                date.setHours(hours, minutes, 0, 0);
+                return date;
+            })()}
+            /> */}
           </View>
         </View>
       </ScrollView>
