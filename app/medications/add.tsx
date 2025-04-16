@@ -4,6 +4,10 @@ import {View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Dimensi
 
 export default function add() {
   return (
-    <div>add</div>
+   <ScrollView>
+    <View>
+        <Text>Hey welcome</Text>
+    </View>
+   </ScrollView>
   )
 }
